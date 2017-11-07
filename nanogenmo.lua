@@ -1,25 +1,21 @@
-local supper = require("supper")
+supper = require("supper")
+nano = require("nano")
 
 math.randomseed(os.time())
 
 local g={}
 
-local sentence={}
-sentence.declarative = function(words)
-	local n1,n2=math.random(#words),math.random(#words)
-	return "The "..words[n1].." is not like the "..words[n2].."."
-end
+local f=io.open("nanogenmo.txt","a")
 
-sentence.exclamatory = function(words)
-	return "Exclamatory!"
-end
-supper.names(sentence)
+nano.book(f,4)
 
+--nano.chapter(f,4)
+
+
+--[[
 local t=sentence.names[math.random(#sentence.names)]
---g.sentence=supper.run(sentence,{t},{"jeep","moss","person","bulk","rest","boar","crisis"})
 g.sentence=sentence[t]({"jeep","moss","person","bulk","rest","boar","crisis"})
 print(g.sentence)
+--]]
 
-local f=io.open("nanogenmo.txt","a")
-f:write(g.sentence)
 f:close()
