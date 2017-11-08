@@ -8,5 +8,6 @@ local g={}
 local f=io.open("nanogenmo.txt","a")
 
 nano.book(f,4)
+--nano.sentence.build(f)
 
 f:close()
