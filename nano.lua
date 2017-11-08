@@ -29,7 +29,11 @@ sentence.build = function(f,s)
 	else
 		local p=""
 		for k,v in ipairs(s) do
-			p=p..supper.random(sentence.parts[v]).." "
+			local space=" "
+			if v=="conclusion" then
+				space=""
+			end
+			p=p..space..supper.random(sentence.parts[v])
 		end
 		print(p)
 		f:write(p)
