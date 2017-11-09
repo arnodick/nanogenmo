@@ -16,8 +16,8 @@ supper.names(sentence.parts)
 sentence.parts.article.rules={"adjective","noun"}
 sentence.parts.adjective.rules={"noun"}
 sentence.parts.noun.rules={"verb","adverb","conjunction","conclusion"}
-sentence.parts.verb.rules={"adverb","conjunction","conclusion"}
-sentence.parts.adverb.rules={"verb","conclusion"}
+sentence.parts.verb.rules={"conjunction","conclusion"}
+sentence.parts.adverb.rules={"verb"}
 sentence.parts.conjunction.rules={"article","adjective","verb","noun","adverb"}
 --sentence.parts.conclusion.rules={"verb","noun","adverb"}
 
@@ -32,15 +32,11 @@ end
 
 sentence.build = function(f,s)
 	s=s or {}
-	--table.insert(s,supper.random(sentence.parts.names))
-	---[[
 	if #s==0 then
 		table.insert(s,"article")
 	else
-		--local p=supper.random(sentence.parts[s[#s] ].rules)
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end
-	--]]
 	if s[#s]~="conclusion" then
 		sentence.build(f,s)
 	else
