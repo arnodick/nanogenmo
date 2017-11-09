@@ -10,7 +10,16 @@ sentence.parts.verb={"read","killed","peed"}
 sentence.parts.adverb={"slowly","lugubriously","incrementally"}
 sentence.parts.conjunction={"and","or"}
 sentence.parts.conclusion={".","!","?"}
+
 supper.names(sentence.parts)
+
+sentence.parts.article.rules={"adjective","noun"}
+sentence.parts.adjective.rules={"article"}
+sentence.parts.noun.rules={"article","adjective"}
+sentence.parts.verb.rules={"noun","adverb"}
+sentence.parts.adverb.rules={"noun"}
+sentence.parts.conjunction.rules={"adjective","verb","noun","adverb"}
+sentence.parts.conclusion.rules={"verb"}
 
 sentence.declarative = function(words)
 	local n1,n2=math.random(#words),math.random(#words)
@@ -23,7 +32,12 @@ end
 
 sentence.build = function(f,s)
 	s=s or {}
-	table.insert(s,supper.random(sentence.parts.names))
+	if #s==0 then
+		table.insert(s,"article")
+	else
+		local p=supper.random(sentence.parts[s[#s]].rules)
+		table.insert(s,p)
+	end
 	if s[#s]~="conclusion" then
 		sentence.build(f,s)
 	else
@@ -35,11 +49,11 @@ sentence.build = function(f,s)
 			end
 			p=p..space..supper.random(sentence.parts[v])
 		end
-		print(p)
+		--print(p)
 		f:write(p)
 	end
 end
-supper.names(sentence)
+--supper.names(sentence)
 nano.sentence=sentence
 
 local paragraph = function(f,length,depth)
