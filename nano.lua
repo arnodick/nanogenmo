@@ -8,17 +8,19 @@ sentence.parts.adjective={"white","smelly","fortuitous"}
 sentence.parts.noun={"Car","Ball","Donkey"}
 sentence.parts.verb={"read","killed","peed"}
 sentence.parts.adverb={"slowly","lugubriously","incrementally"}
-sentence.parts.conjunction={"and","or"}
+sentence.parts.nounconjunction={"and","or"}
+sentence.parts.verbconjunction={"and","or"}
 sentence.parts.conclusion={".","!","?"}
 
 supper.names(sentence.parts)
 
 sentence.parts.article.rules={"adjective","noun"}
 sentence.parts.adjective.rules={"noun"}
-sentence.parts.noun.rules={"verb","adverb","conjunction","conclusion"}
-sentence.parts.verb.rules={"conjunction","conclusion"}
+sentence.parts.noun.rules={"verb","adverb","nounconjunction","conclusion"}
+sentence.parts.verb.rules={"verbconjunction","conclusion"}
 sentence.parts.adverb.rules={"verb"}
-sentence.parts.conjunction.rules={"article","adjective","verb","noun","adverb"}
+sentence.parts.nounconjunction.rules={"article","adjective","noun"}
+sentence.parts.verbconjunction.rules={"article","verb","adverb"}
 --sentence.parts.conclusion.rules={"verb","noun","adverb"}
 
 sentence.declarative = function(words)
@@ -41,12 +43,16 @@ sentence.build = function(f,s)
 		sentence.build(f,s)
 	else
 		local p=""
-		for k,v in ipairs(s) do
+		for i,v in ipairs(s) do
 			local space=" "
 			if v=="conclusion" then
 				space=""
 			end
-			p=p..space..supper.random(sentence.parts[v])
+			local w=supper.random(sentence.parts[v])
+			if i==1 then
+				w=string.gsub(w,"^%l",string.upper)
+			end
+			p=p..space..w
 		end
 		--print(p)
 		f:write(p)
