@@ -2,16 +2,7 @@ local nano={}
 
 
 local sentence={}
-sentence.parts={}
-sentence.parts.article={"a","an","the"}
-sentence.parts.adjective={"white","smelly","fortuitous"}
-sentence.parts.noun={"car","ball","donkey","person"}
-sentence.parts.propernoun={"Baldwin","Jorbus","Hank","Sally","Martha","Blitzer"}
-sentence.parts.verb={"read","killed","peed","is"}
-sentence.parts.adverb={"slowly","lugubriously","incrementally"}
-sentence.parts.nounconjunction={"and","or","then"}
-sentence.parts.verbconjunction={"and","or","then"}
-sentence.parts.conclusion={".","!","?","..."}
+sentence.parts=LIP.load("sentenceparts.ini")
 
 supper.names(sentence.parts)
 
