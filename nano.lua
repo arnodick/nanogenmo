@@ -5,21 +5,23 @@ local sentence={}
 sentence.parts={}
 sentence.parts.article={"a","an","the"}
 sentence.parts.adjective={"white","smelly","fortuitous"}
-sentence.parts.noun={"Car","Ball","Donkey"}
-sentence.parts.verb={"read","killed","peed"}
+sentence.parts.noun={"car","ball","donkey","person"}
+sentence.parts.propernoun={"Baldwin","Jorbus","Hank","Sally","Martha","Blitzer"}
+sentence.parts.verb={"read","killed","peed","is"}
 sentence.parts.adverb={"slowly","lugubriously","incrementally"}
-sentence.parts.nounconjunction={"and","or"}
-sentence.parts.verbconjunction={"and","or"}
-sentence.parts.conclusion={".","!","?"}
+sentence.parts.nounconjunction={"and","or","then"}
+sentence.parts.verbconjunction={"and","or","then"}
+sentence.parts.conclusion={".","!","?","..."}
 
 supper.names(sentence.parts)
 
 sentence.parts.article.rules={"adjective","noun"}
-sentence.parts.adjective.rules={"noun"}
+sentence.parts.adjective.rules={"noun","propernoun"}
 sentence.parts.noun.rules={"verb","adverb","nounconjunction","conclusion"}
+sentence.parts.propernoun.rules={"verb","adverb","nounconjunction"}
 sentence.parts.verb.rules={"verbconjunction","conclusion"}
 sentence.parts.adverb.rules={"verb"}
-sentence.parts.nounconjunction.rules={"article","adjective","noun"}
+sentence.parts.nounconjunction.rules={"article","adjective","noun","propernoun"}
 sentence.parts.verbconjunction.rules={"article","verb","adverb"}
 --sentence.parts.conclusion.rules={"verb","noun","adverb"}
 
@@ -35,7 +37,11 @@ end
 sentence.build = function(f,s)
 	s=s or {}
 	if #s==0 then
-		table.insert(s,"article")
+		if math.random(2)==1 then
+			table.insert(s,"article")
+		else
+			table.insert(s,"propernoun")
+		end
 	else
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end
