@@ -18,13 +18,9 @@ math.randomseed(os.time())
 --it's where things like character names (main character, antagonist etc) go
 local g={}
 
---local f=io.open("nanogenmo.txt","a")
-local f=io.open("newnounlist.txt","w")
+local f=io.open("nanogenmo.txt","a")
 
-s=numberfiles("nounlist.txt")
-f:write(s)
-
---nano.book(f,4)
+nano.book(f,4)
 --nano.sentence.build(f)
 
 f:close()
