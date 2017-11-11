@@ -1,6 +1,6 @@
-LIP = require("LIP")
-supper = require("supper")
-nano = require("nano")
+LIP = require("library/LIP")
+supper = require("library/supper")
+nano = require("library/nano")
 
 local numberfiles = function(filename)
 	local s=""
@@ -17,8 +17,13 @@ math.randomseed(os.time())
 --TODO this will be the generator seed state thing
 --it's where things like character names (main character, antagonist etc) go
 local g={}
+g.names={}
 
 local f=io.open("nanogenmo.txt","a")
+
+print("Please enter a name! ")
+table.insert(g.names,io.read("*line"))
+print(g.names[1].." is good!")
 
 nano.book(f,4)
 --nano.sentence.build(f)

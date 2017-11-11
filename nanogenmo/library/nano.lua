@@ -1,8 +1,7 @@
 local nano={}
 
-
 local sentence={}
-sentence.parts=LIP.load("sentenceparts.ini")
+sentence.parts=LIP.load("library/sentenceparts.ini")
 
 supper.names(sentence.parts)
 
