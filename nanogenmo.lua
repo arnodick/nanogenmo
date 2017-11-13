@@ -1,5 +1,5 @@
 LIP = require("library/LIP")
---hpdf = require("hpdf")
+hpdf = require("hpdf")
 supper = require("library/supper")
 nano = require("library/nano")
 
@@ -44,6 +44,7 @@ if pdf then
 	local width=hpdf.Page_GetWidth(page)
 	local font=hpdf.GetFont(pdf,"Helvetica")
 	hpdf.Page_SetFontAndSize(page,font,24)
+	hpdf.Page_SetLineWidth(page,0.25)
 	hpdf.Page_BeginText(page)
 	hpdf.Page_TextOut(page,60,height-60,f:read("*a"))
 	hpdf.Page_EndText(page)
