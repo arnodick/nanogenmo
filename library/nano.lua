@@ -5,20 +5,30 @@ sentence.parts=LIP.load("library/sentenceparts.ini")
 
 supper.names(sentence.parts)
 
-sentence.parts.article.rules={"adjective","noun"}
-sentence.parts.adjective.rules={"noun","propernoun"}
-sentence.parts.noun.rules={"verb","adverb","nounconjunction","conclusion"}
+--sentence.parts.article.rules={"adjective","noun"}
+sentence.parts.articlevowel.rules={"adjectivevowel"}
+sentence.parts.articleconsonant.rules={"adjectiveconsonant"}
+--sentence.parts.adjective.rules={"noun"}
+sentence.parts.adjectivevowel.rules={"noun"}
+sentence.parts.adjectiveconsonant.rules={"noun"}
+--sentence.parts.noun.rules={"verb","adverb","nounconjunction","conclusion"}
+sentence.parts.noun.rules={"verb","adverb","nounconjunction"}
 sentence.parts.propernoun.rules={"verb","adverb","nounconjunction"}
-sentence.parts.verb.rules={"verbconjunction","conclusion"}
+sentence.parts.verb.rules={"verbconjunction","comma","conclusion"}
 sentence.parts.adverb.rules={"verb"}
-sentence.parts.nounconjunction.rules={"article","adjective","noun","propernoun"}
-sentence.parts.verbconjunction.rules={"article","verb","adverb"}
+sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","adjectivevowel","adjectiveconsonant","noun","propernoun"}
+sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","adverb"}
+sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
+sentence.parts.comma.rules={"commaconjunction"}
 
 sentence.build = function(f,s)
 	s=s or {}
 	if #s==0 then
-		if math.random(2)==1 then
-			table.insert(s,"article")
+		local r=math.random(3)
+		if r==1 then
+			table.insert(s,"articlevowel")
+		elseif r==2 then
+			table.insert(s,"articleconsonant")
 		else
 			table.insert(s,"propernoun")
 		end
@@ -31,7 +41,7 @@ sentence.build = function(f,s)
 		local p=""
 		for i,v in ipairs(s) do
 			local space=" "
-			if v=="conclusion" then
+			if v=="conclusion" or v=="comma" then
 				space=""
 			end
 			local w=supper.random(sentence.parts[v])
@@ -86,5 +96,10 @@ local book = function(f,g,length,depth)
 	end
 end
 nano.book=book
+
+local character = function(t)
+
+end
+nano.character=character
 
 return nano
