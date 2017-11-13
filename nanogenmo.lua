@@ -1,5 +1,5 @@
 LIP = require("library/LIP")
-hpdf = require("hpdf")
+--hpdf = require("hpdf")
 supper = require("library/supper")
 nano = require("library/nano")
 
@@ -34,9 +34,8 @@ nano.book(f,g,4)
 
 f:close()
 
+--[[
 f=io.open("books/nanogenmo.txt","r")
-
----[[
 local pdf = hpdf.New()
 if pdf then
 	local page=hpdf.AddPage(pdf)
@@ -53,8 +52,5 @@ if pdf then
 	hpdf.SaveToFile(pdf,"test.pdf")
 	hpdf.Free(pdf)
 end
---]]
-
 f:close()
-
-
+--]]
