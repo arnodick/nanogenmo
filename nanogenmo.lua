@@ -1,4 +1,5 @@
 LIP = require("library/LIP")
+hpdf = require("hpdf")
 supper = require("library/supper")
 nano = require("library/nano")
 
@@ -13,6 +14,20 @@ local numberlines = function(filename)
 end
 
 math.randomseed(os.time())
+
+local pdf = hpdf.New()
+if pdf then
+	local page=hpdf.AddPage(pdf)
+	local height=hpdf.Page_GetHeight(page)
+	local width=hpdf.Page_GetWidth(page)
+	local font=hpdf.GetFont(pdf,"Helvetica")
+	hpdf.Page_SetFontAndSize(page,font,24)
+	hpdf.Page_BeginText(page)
+	hpdf.Page_TextOut(page,60,height-60,"Bonjourno")
+	hpdf.Page_EndText(page)
+	hpdf.SaveToFile(pdf,"test.pdf")
+	hpdf.Free(pdf)
+end
 
 --TODO this will be the generator seed state thing
 --it's where things like character names (main character, antagonist etc) go
