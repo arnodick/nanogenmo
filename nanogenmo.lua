@@ -40,6 +40,8 @@ f=io.open("books/nanogenmo.txt","r")
 local pdf = hpdf.New()
 if pdf then
 	local page=hpdf.AddPage(pdf)
+	hpdf.Page_SetWidth(page,300)
+	hpdf.Page_SetHeight(page,200)
 	local height=hpdf.Page_GetHeight(page)
 	local width=hpdf.Page_GetWidth(page)
 	local font=hpdf.GetFont(pdf,"Helvetica")
