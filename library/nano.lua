@@ -13,16 +13,6 @@ sentence.parts.verb.rules={"verbconjunction","conclusion"}
 sentence.parts.adverb.rules={"verb"}
 sentence.parts.nounconjunction.rules={"article","adjective","noun","propernoun"}
 sentence.parts.verbconjunction.rules={"article","verb","adverb"}
---sentence.parts.conclusion.rules={"verb","noun","adverb"}
-
-sentence.declarative = function(words)
-	local n1,n2=math.random(#words),math.random(#words)
-	return "The "..words[n1].." is not like the "..words[n2]..". "
-end
-
-sentence.exclamatory = function(words)
-	return "Exclamatory! "
-end
 
 sentence.build = function(f,s)
 	s=s or {}
@@ -84,7 +74,7 @@ local chapter = function(f,length,number,depth)
 end
 nano.chapter=chapter
 
-local book = function(f,length,depth)
+local book = function(f,g,length,depth)
 	local d=depth or 1
 	if d==1 then
 		f:write("BOOK TITLE\n")
@@ -92,7 +82,7 @@ local book = function(f,length,depth)
 	nano.chapter(f,4,d)
 	d=d+1
 	if d<=length then
-		nano.book(f,length,d)
+		nano.book(f,g,length,d)
 	end
 end
 nano.book=book
