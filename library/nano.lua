@@ -18,7 +18,7 @@ sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.comma.rules={"commaconjunction"}
 
-sentence.build = function(f,s)
+sentence.build = function(f,g,s)
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
@@ -27,7 +27,8 @@ sentence.build = function(f,s)
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end
 	if s[#s]~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
-		sentence.build(f,s)
+		g.wordcount=g.wordcount+1
+		sentence.build(f,g,s)
 	else--otherwise, go through all the sentence parts and insert a random word of that part type into the string
 		local p=""
 		for i,v in ipairs(s) do
@@ -47,14 +48,14 @@ sentence.build = function(f,s)
 end
 nano.sentence=sentence
 
-local paragraph = function(f,length,depth)
+local paragraph = function(f,g,length,depth)
 	local d=depth or 1
 	--local t=sentence.names[math.random(#sentence.names)]
 	--f:write( sentence[t]({"jeep","moss","person","bulk","rest","boar","crisis"}) )
-	f:write( sentence.build(f))
+	f:write(sentence.build(f,g))
 	d=d+1
 	if d<=length then
-		nano.paragraph(f,length,d)
+		nano.paragraph(f,g,length,d)
 	else
 		f:write("\n\n")
 	end
@@ -64,10 +65,12 @@ nano.paragraph=paragraph
 local chapter = function(f,g,length,number,depth)
 	local d=depth or 1
 	if d==1 then
-		f:write("CHAPTER "..number.."\n")
+		f:write("CHAPTER "..number..": ")
+		sentence.build(f,g)
+		f:write("\n")
 	end
-	local chapterlength=math.random(g.chapter.lengthmin,g.chapter.lengthmax)
-	nano.paragraph(f,chapterlength)
+	local paragraphlength=math.random(g.paragraph.lengthmin,g.paragraph.lengthmax)
+	nano.paragraph(f,g,paragraphlength)
 	d=d+1
 	if d<=length then
 		nano.chapter(f,g,length,number,d)
@@ -80,9 +83,11 @@ local book = function(f,g,length,depth)
 	if d==1 then
 		f:write("BOOK TITLE\n")
 	end
-	nano.chapter(f,g,4,d)
+	local chapterlength=math.random(g.chapter.lengthmin,g.chapter.lengthmax)
+	nano.chapter(f,g,chapterlength,d)
 	d=d+1
-	if d<=length then
+	--if d<=length then
+	if g.wordcount<=length then
 		nano.book(f,g,length,d)
 	end
 end

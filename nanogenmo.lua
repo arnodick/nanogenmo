@@ -18,12 +18,13 @@ math.randomseed(os.time())
 --Generator seed state thing
 --it's where things like character names (main character, antagonist etc) go
 local g={}
+g.wordcount=0
 g.chapter={}
 g.chapter.lengthmin=1
 g.chapter.lengthmax=10
-g.paragraphs={}
-g.paragraphs.lengthmin=1
-g.paragraphs.lengthmax=10
+g.paragraph={}
+g.paragraph.lengthmin=1
+g.paragraph.lengthmax=10
 g.characters={}
 
 local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
@@ -38,7 +39,8 @@ print(g.characters.antagonist.." is BAD >(")
 --Book generator
 --f = file to be written to
 --g = the Generator, as defined above
-nano.book(f,g,4)
+local wordamount=50000
+nano.book(f,g,wordamount)
 
 f:close()--close the file when we are done writing to it
 
