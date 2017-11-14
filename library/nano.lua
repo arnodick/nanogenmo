@@ -26,8 +26,9 @@ sentence.build = function(f,g,s)
 	else--otherwise make a sentence part based on the rules of the last part of the sentence ie: if last part is "comma", only option is "commaconjunction"
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end
-	if s[#s]~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
-		g.wordcount=g.wordcount+1
+	local lastpart=s[#s]
+	if lastpart~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
+		if lastpart~="comma" and lastpart~="beginning" then g.wordcount=g.wordcount+1 end
 		sentence.build(f,g,s)
 	else--otherwise, go through all the sentence parts and insert a random word of that part type into the string
 		local p=""
@@ -89,6 +90,8 @@ local book = function(f,g,length,depth)
 	--if d<=length then
 	if g.wordcount<=length then
 		nano.book(f,g,length,d)
+	else
+		f:write("LE FIN")
 	end
 end
 nano.book=book
