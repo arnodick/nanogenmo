@@ -3,12 +3,22 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
---TODO test this!
 local vowellines = function(filename)
 	s=""
 	for line in io.lines(filename) do
 		local firstletter=string.lower(string.sub(line,1,1))
 		if firstletter=="a" or firstletter=="e" or firstletter=="i" or firstletter=="o" or firstletter=="u" then
+			s=s..line.."\n"
+		end
+	end
+	return s
+end
+
+local consonantlines = function(filename)
+	s=""
+	for line in io.lines(filename) do
+		local firstletter=string.lower(string.sub(line,1,1))
+		if firstletter~="a" and firstletter~="e" and firstletter~="i" and firstletter~="o" and firstletter~="u" then
 			s=s..line.."\n"
 		end
 	end
@@ -55,6 +65,12 @@ local wordamount=50000
 nano.book(f,g,wordamount)
 
 f:close()--close the file when we are done writing to it
+
+f=io.open("consonantnounlist.txt","w")
+local s=consonantlines("nounlist.txt")
+f:write(s)
+f:close()
+
 
 --[[
 f=io.open("books/nanogenmo.txt","r")
