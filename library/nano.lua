@@ -5,15 +5,18 @@ sentence.parts=LIP.load("library/sentenceparts.ini")
 supper.names(sentence.parts)
 
 sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun"}
-sentence.parts.articlevowel.rules={"adjectivevowel"}
-sentence.parts.articleconsonant.rules={"adjectiveconsonant"}
+sentence.parts.articlevowel.rules={"adjectivevowel","nounvowel"}
+sentence.parts.articleconsonant.rules={"adjectiveconsonant","nounconsonant"}
 sentence.parts.adjectivevowel.rules={"noun"}
 sentence.parts.adjectiveconsonant.rules={"noun"}
 sentence.parts.noun.rules={"verb","adverb","nounconjunction"}
+sentence.parts.nounvowel.rules={"verb","adverb","nounconjunction"}
+sentence.parts.nounconsonant.rules={"verb","adverb","nounconjunction"}
 sentence.parts.propernoun.rules={"verb","adverb","nounconjunction"}
 sentence.parts.verb.rules={"verbconjunction","comma","conclusion"}
 sentence.parts.adverb.rules={"verb"}
-sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","adjectivevowel","adjectiveconsonant","noun","propernoun"}
+--sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","adjectivevowel","adjectiveconsonant","noun","propernoun"}
+sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","adverb"}
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.comma.rules={"commaconjunction"}

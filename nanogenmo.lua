@@ -66,10 +66,12 @@ nano.book(f,g,wordamount)
 
 f:close()--close the file when we are done writing to it
 
-f=io.open("consonantnounlist.txt","w")
-local s=consonantlines("nounlist.txt")
+--[[
+f=io.open("vowelnounlistnum.txt","w")
+local s=numberlines("vowelnounlist.txt")
 f:write(s)
 f:close()
+--]]
 
 
 --[[
