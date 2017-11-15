@@ -3,6 +3,18 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
+--TODO test this!
+local vowellines = function(filename)
+	s=""
+	for line in io.lines(filename) do
+		local firstletter=string.lower(string.sub(line,1,1))
+		if firstletter=="a" or firstletter=="e" or firstletter=="i" or firstletter=="o" or firstletter=="u" then
+			s=s..line.."\n"
+		end
+	end
+	return s
+end
+
 local numberlines = function(filename)
 	local s=""
 	local i=1
