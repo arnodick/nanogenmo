@@ -3,7 +3,7 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
-print(arg[1])
+--print(arg[1])
 
 local vowellines = function(filename)
 	s=""
@@ -53,12 +53,16 @@ g.characters={}
 
 local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
 
+f:write(arg[1].."\n")
+f:write(arg[2].."\n")
+--[[
 print("Please enter a name for the main character! ")
 g.characters.main=io.read("*line")
 print(g.characters.main.." is good!")
 print("Please enter a name for the antagonist! ")
 g.characters.antagonist=io.read("*line")
 print(g.characters.antagonist.." is BAD >(")
+--]]
 
 --Book generator
 --f = file to be written to
