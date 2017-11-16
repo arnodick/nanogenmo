@@ -3,6 +3,8 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
+print(arg[1])
+
 local vowellines = function(filename)
 	s=""
 	for line in io.lines(filename) do
