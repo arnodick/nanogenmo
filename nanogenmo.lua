@@ -1,7 +1,7 @@
-LIP = require("library/LIP")
+LIP = require("./library/LIP")
 --hpdf = require("hpdf")
-supper = require("library/supper")
-nano = require("library/nano")
+supper = require("./library/supper")
+nano = require("./library/nano")
 
 --print(arg[1])
 
