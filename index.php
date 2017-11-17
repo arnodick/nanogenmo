@@ -4,7 +4,14 @@
 	<p>GENERATING...</p>
 	<?php
 		$output = shell_exec('lua52 nanogenmo.lua blub borp');
-		echo $output;
+		if (is_null($output))
+		{
+			echo "no";
+		}
+		else
+		{
+			echo $output
+		}
 	?>
 </BODY>
 </HTML>
