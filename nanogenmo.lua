@@ -100,3 +100,5 @@ if pdf then
 end
 f:close()
 --]]
+
+return "yes"

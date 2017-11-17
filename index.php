@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <HTML>
 <BODY>
-	<p>GENERATING...
+	<p>GENERATING...</p>
 	<?php
-		echo "blub";
-		echo shell_exec('whoami');
 		$output = shell_exec('lua52 nanogenmo.lua blub borp');
+		echo $output;
 	?>
-	</p>
 </BODY>
 </HTML>
