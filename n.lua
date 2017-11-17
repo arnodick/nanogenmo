@@ -1,2 +1,1 @@
-print("hey")
-return "worky"
+print("hey worky worky")
