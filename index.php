@@ -10,7 +10,7 @@
 		}
 		else
 		{
-			echo $output
+			echo $output;
 		}
 	?>
 </BODY>
