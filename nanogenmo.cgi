@@ -1,5 +1,5 @@
 #!/usr/local/bin/lua52
-io.write('Content-Type: text/plain\n\n', "Writing A Book!", '\n', '...')
+--io.write('Content-Type: text/plain\n\n', "Writing A Book!", '\n', '...')
 LIP = require("library/LIP")
 --hpdf = require("hpdf")
 supper = require("library/supper")
@@ -103,4 +103,4 @@ end
 f:close()
 --]]
 
-io.write("Done!", '\n')
+io.write('Content-Type: text/plain\n\n', 'Done!', '\n')
