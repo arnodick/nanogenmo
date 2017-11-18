@@ -1,4 +1,3 @@
-#!/usr/local/bin/lua52
 LIP = require("library/LIP")
 --hpdf = require("hpdf")
 supper = require("library/supper")
