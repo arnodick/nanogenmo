@@ -1,2 +1,2 @@
 #!/usr/local/bin/lua52
-print("Hello")
+io.write("Hello")
