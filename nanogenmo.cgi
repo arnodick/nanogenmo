@@ -103,4 +103,5 @@ end
 f:close()
 --]]
 
-io.write('Content-Type: text/plain\n\n', 'Done!', '\n')
+--io.write('Content-Type: text/plain\n\n', 'Done!', '\n')
+return "Done!"
