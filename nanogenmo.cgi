@@ -1,2 +1,2 @@
 #!/usr/local/bin/lua52
-io.write("Hello")
+io.write('Content-Type: text/plain\n\n', "Hello", '\n')
