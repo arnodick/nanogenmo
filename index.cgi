@@ -1,5 +1,7 @@
 #!/usr/local/bin/lua52
 io.write('Content-Type: text/plain\n\n', "Writing A Book!", '\n', '...')
+
+
 LIP = require("library/LIP")
 --hpdf = require("hpdf")
 supper = require("library/supper")
@@ -53,7 +55,7 @@ g.paragraph.lengthmin=1
 g.paragraph.lengthmax=10
 g.characters={}
 
-local f=io.open("/tmp/nanogenmo.txt","a")--open a text file and set it to be appended to
+local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
 
 --f:write(arg[1].."\n")
 --f:write(arg[2].."\n")
@@ -102,5 +104,7 @@ if pdf then
 end
 f:close()
 --]]
+
+
 
 io.write('Done!', '\n')
