@@ -4,7 +4,8 @@ local sentence={}
 sentence.parts=LIP.load("library/sentenceparts.ini")
 supper.names(sentence.parts)
 
-sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun"}
+sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun","question"}
+sentence.parts.question.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.articlevowel.rules={"adjectivevowel","nounvowel"}
 sentence.parts.articleconsonant.rules={"adjectiveconsonant","nounconsonant"}
 sentence.parts.adjectivevowel.rules={"noun"}
