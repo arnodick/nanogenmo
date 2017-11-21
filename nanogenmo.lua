@@ -3,8 +3,8 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
-print(arg[1])
-print(arg[2])
+--print(arg[1])
+--print(arg[2])
 
 local vowellines = function(filename)
 	s=""
@@ -53,6 +53,9 @@ g.paragraph.lengthmax=10
 g.characters={}
 
 local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
+
+f:write(arg[1])
+f:write(arg[2])
 
 --f:write(arg[1].."\n")
 --f:write(arg[2].."\n")
