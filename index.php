@@ -5,9 +5,7 @@
 	<?php
 		$protagonist = $_POST["protagonist"];
 		$antagonist = $_POST["antagonist"];
-		print($protagonist);
-		print($antagonist);
-		$output = shell_exec('lua52 nanogenmo.lua');
+		$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist);
 	?>
 </BODY>
 </HTML>
