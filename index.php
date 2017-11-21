@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <HTML>
 <BODY>
-	<form>
-		Protagonist:<br>
-		<input type="text" name="protagonist"><br>
-		Antagonist:<br>
-		<input type="text" name="antagonist">
-	</form> 
 	<p>GENERATING...</p>
 	<?php
+		$protagonist = $_POST["protagonist"];
+		$antagonist = $_POST["antagonist"];
+		print($protagonist)
+		print($antagonist)
 		$output = shell_exec('lua52 nanogenmo.lua');
 	?>
 </BODY>
