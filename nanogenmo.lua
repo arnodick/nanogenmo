@@ -31,7 +31,7 @@ if f then
 
 	f:close()--close the file when we are done writing to it
 	--io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/"..filename..".txt'>Link</a>")
-	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/book.txt'>Link</a>")
+	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/"..filename..".txt'>Link</a>")
 	return "successful yayyyy"
 else
 	return "not successful dannngggg \n"..error
