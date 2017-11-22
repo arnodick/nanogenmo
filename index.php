@@ -4,7 +4,9 @@
 	<p>GENERATING</p>
 	<p>...</p>
 	<p><?php
+		echo hash("md5", $_POST["protagonist"])
 		$protagonist = escapeshellarg($_POST["protagonist"]);
+		echo hash("md5", $protagonist)
 		$antagonist = escapeshellarg($_POST["antagonist"]);
 		if ($protagonist and $antagonist)
 		{
