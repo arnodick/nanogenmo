@@ -7,7 +7,8 @@
 		$protagonist = $_POST["protagonist"];
 		$antagonist = $_POST["antagonist"];
 		$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist);
-		print($output);
+		echo "Done!";
+		echo $output;
 	?>
 </BODY>
 </HTML>
