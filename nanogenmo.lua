@@ -24,6 +24,8 @@ local f,error=io.open("books/"..filename..".txt","a")--open a text file and set 
 
 if f then
 	f:write("Title: "..filename.."\n")
+	f:write(g.characters.protagonist)
+	f:write(g.characters.antagonist)
 
 	--Book generator
 	local wordamount=50000
