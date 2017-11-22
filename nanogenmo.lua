@@ -20,15 +20,20 @@ g.characters.antagonist=arg[1]
 g.characters.protagonist=arg[2]
 
 local filename=supper.random(nano.sentence.parts.noun)
-local f=io.open("books/"..filename..".txt","a")--open a text file and set it to be appended to
+local f,error=io.open("books/"..filename..".txt","a")--open a text file and set it to be appended to
 
-f:write("Title: "..filename.."\n")
+if f then
+	f:write("Title: "..filename.."\n")
 
---Book generator
-local wordamount=50000
-nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
+	--Book generator
+	local wordamount=50000
+	nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
 
-f:close()--close the file when we are done writing to it
+	f:close()--close the file when we are done writing to it
+	return "successful yayyyy"
+else
+	return "not successful dannngggg \n"..error
+end
 
 
 
