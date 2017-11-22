@@ -3,9 +3,42 @@ LIP = require("library/LIP")
 supper = require("library/supper")
 nano = require("library/nano")
 
---print(arg[1])
---print(arg[2])
+math.randomseed(os.time())
 
+--Generator seed state thing
+--it's where things like character names (main character, antagonist etc) go
+local g={}
+g.wordcount=0
+g.chapter={}
+g.chapter.lengthmin=1
+g.chapter.lengthmax=10
+g.paragraph={}
+g.paragraph.lengthmin=1
+g.paragraph.lengthmax=10
+g.characters={}
+g.characters.antagonist=arg[1]
+g.characters.protagonist=arg[2]
+
+local filename=supper.random(nano.sentence.parts.noun)
+local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
+
+f:write("filename: "..filename.."\n")
+
+--Book generator
+local wordamount=50000
+nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
+
+f:close()--close the file when we are done writing to it
+
+
+
+--[[
+f=io.open("vowelnounlistnum.txt","w")
+local s=numberlines("vowelnounlist.txt")
+f:write(s)
+f:close()
+--]]
+--[[
 local vowellines = function(filename)
 	s=""
 	for line in io.lines(filename) do
@@ -37,52 +70,7 @@ local numberlines = function(filename)
 	end
 	return s
 end
-
-math.randomseed(os.time())
-
---Generator seed state thing
---it's where things like character names (main character, antagonist etc) go
-local g={}
-g.wordcount=0
-g.chapter={}
-g.chapter.lengthmin=1
-g.chapter.lengthmax=10
-g.paragraph={}
-g.paragraph.lengthmin=1
-g.paragraph.lengthmax=10
-g.characters={}
-
-local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
-
-f:write(arg[1])
-f:write(arg[2])
-
---f:write(arg[1].."\n")
---f:write(arg[2].."\n")
---[[
-print("Please enter a name for the main character! ")
-g.characters.main=io.read("*line")
-print(g.characters.main.." is good!")
-print("Please enter a name for the antagonist! ")
-g.characters.antagonist=io.read("*line")
-print(g.characters.antagonist.." is BAD >(")
 --]]
-
---Book generator
---f = file to be written to
---g = the Generator, as defined above
-local wordamount=50000
-nano.book(f,g,wordamount)
-
-f:close()--close the file when we are done writing to it
-
---[[
-f=io.open("vowelnounlistnum.txt","w")
-local s=numberlines("vowelnounlist.txt")
-f:write(s)
-f:close()
---]]
-
 
 --[[
 f=io.open("books/nanogenmo.txt","r")
