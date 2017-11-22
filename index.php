@@ -14,7 +14,7 @@
 		}
 		else
 		{
-			echo "This book got NO character!"
+			echo "This book got NO character!";
 		}
 	?></p>
 </BODY>
