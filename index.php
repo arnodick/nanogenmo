@@ -10,6 +10,7 @@
 		{
 			$protagonist = escapeshellarg($protagonist);
 			$antagonist = escapeshellarg($antagonist);
+			echo $_SERVER["REMOTE_USER"];
 			$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist);
 			echo "Done!";
 			echo "<pre>$output</pre>";//TODO this is a hack why does this work only with this line?
