@@ -20,9 +20,9 @@ g.characters.antagonist=arg[1]
 g.characters.protagonist=arg[2]
 
 local filename=supper.random(nano.sentence.parts.noun)
-local f=io.open("books/nanogenmo.txt","a")--open a text file and set it to be appended to
+local f=io.open("books/"..filename..".txt","a")--open a text file and set it to be appended to
 
-f:write("filename: "..filename.."\n")
+f:write("Title: "..filename.."\n")
 
 --Book generator
 local wordamount=50000
