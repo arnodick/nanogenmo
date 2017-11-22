@@ -10,7 +10,7 @@
 		{
 			$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist);
 			echo "Done!";
-			echo "<pre>$output</pre>";
+			//echo "<pre>$output</pre>";
 		}
 		else
 		{
