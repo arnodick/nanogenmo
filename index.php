@@ -4,13 +4,13 @@
 	<p>GENERATING</p>
 	<p>...</p>
 	<p><?php
-		$protagonist = $_POST["protagonist"];
-		$antagonist = $_POST["antagonist"];
+		$protagonist = escapeshellarg($_POST["protagonist"]);
+		$antagonist = escapeshellarg($_POST["antagonist"]);
 		if ($protagonist and $antagonist)
 		{
 			$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist);
 			echo "Done!";
-			echo "<pre>$output</pre>";
+			echo "<pre>$output</pre>";//TODO this is a hack why does this work only with this line?
 		}
 		else
 		{
