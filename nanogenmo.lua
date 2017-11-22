@@ -30,7 +30,7 @@ if f then
 	nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
 
 	f:close()--close the file when we are done writing to it
-	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/".filename.".txt'>Link</a>")
+	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/"..filename..".txt'>Link</a>")
 	return "successful yayyyy"
 else
 	return "not successful dannngggg \n"..error
