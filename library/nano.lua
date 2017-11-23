@@ -16,7 +16,6 @@ sentence.parts.nounconsonant.rules={"verb","adverb","nounconjunction"}
 sentence.parts.propernoun.rules={"verb","adverb","nounconjunction"}
 sentence.parts.verb.rules={"verbconjunction","comma","conclusion"}
 sentence.parts.adverb.rules={"verb"}
---sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","adjectivevowel","adjectiveconsonant","noun","propernoun"}
 sentence.parts.nounconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","adverb"}
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
@@ -86,7 +85,7 @@ nano.chapter=chapter
 local book = function(f,g,length,depth)
 	local d=depth or 1
 	if d==1 then
-		f:write("BOOK TITLE\n")
+		f:write("Title: "..g.title.."\n")
 	end
 	local chapterlength=math.random(g.chapter.lengthmin,g.chapter.lengthmax)
 	nano.chapter(f,g,chapterlength,d)
