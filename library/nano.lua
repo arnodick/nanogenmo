@@ -25,8 +25,7 @@ sentence.build = function(f,g,s)
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
-		--table.insert(s,supper.random(sentence.parts.beginning.rules))
-		table.insert(s,"beginning")
+		table.insert(s,supper.random(sentence.parts.beginning.rules))--behaves like a beginning part ie: inserts one of the parts that follows a beginning
 	else--otherwise make a sentence part based on the rules of the last part of the sentence ie: if last part is "comma", only option is "commaconjunction"
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end
@@ -55,9 +54,11 @@ nano.sentence=sentence
 
 local paragraph = function(f,g,length,depth)
 	local d=depth or 1
-	--local t=sentence.names[math.random(#sentence.names)]
-	--f:write( sentence[t]({"jeep","moss","person","bulk","rest","boar","crisis"}) )
-	f:write(sentence.build(f,g))
+	if d==1 then
+		f:write(sentence.build(f,g))
+	else
+		f:write(sentence.build(f,g,{"beginning"}))
+	end
 	d=d+1
 	if d<=length then
 		nano.paragraph(f,g,length,d)
