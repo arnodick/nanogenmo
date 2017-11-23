@@ -25,7 +25,8 @@ sentence.build = function(f,g,s)
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
-		table.insert(s,supper.random(sentence.parts.beginning.rules))
+		--table.insert(s,supper.random(sentence.parts.beginning.rules))
+		table.insert(s,"beginning")
 	else--otherwise make a sentence part based on the rules of the last part of the sentence ie: if last part is "comma", only option is "commaconjunction"
 		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
 	end

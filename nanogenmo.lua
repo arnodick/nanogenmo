@@ -20,10 +20,10 @@ g.characters={}
 g.characters.antagonist=arg[1] or "NO NAME PROTAGONIST"
 g.characters.protagonist=arg[2] or "NO NAME ANTAGONIST"
 
-for i=1,10 do
+--for i=1,10 do
 	table.insert(nano.sentence.parts.propernoun,g.characters.protagonist)
 	table.insert(nano.sentence.parts.propernoun,g.characters.antagonist)
-end
+--end
 
 local filename=supper.random(nano.sentence.parts.noun)
 local f,error=io.open("books/"..filename..".txt","a")--open a text file and set it to be appended to
