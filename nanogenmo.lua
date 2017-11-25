@@ -39,8 +39,8 @@ g.paragraph={}
 g.paragraph.lengthmin=1
 g.paragraph.lengthmax=10
 g.characters={}
-g.characters.antagonist=arg[1] or "NO_NAME_PROTAGONIST"
-g.characters.protagonist=arg[2] or "NO_NAME_ANTAGONIST"
+g.characters.antagonist=string.gsub(arg[1],"^%l",string.upper) or "NO_NAME_PROTAGONIST"
+g.characters.protagonist=string.gsub(arg[2],"^%l",string.upper) or "NO_NAME_ANTAGONIST"
 
 table.insert(nano.sentence.parts.propernoun,g.characters.protagonist)
 table.insert(nano.sentence.parts.propernoun,g.characters.antagonist)

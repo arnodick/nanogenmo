@@ -113,7 +113,7 @@ local title = function(f,g)
 	local titles =
 	{
 		function(g) return "The Adventures of "..g.characters.protagonist end,
-		function(g) return "The "..supper.random(sentence.parts.noun) end,
+		function(g) return "The "..string.gsub(supper.random(sentence.parts.noun),"^%l",string.upper) end,
 		function(g) return g.characters.protagonist.." versus "..g.characters.antagonist end,
 	}
 
