@@ -1,4 +1,29 @@
-local nano={}
+local nano =
+{
+	_VERSION        = 'nano v1.0',
+    _DESCRIPTION    = 'A thing that makes books!',
+    _LICENSE        = [[
+Copyright (c) 2017 Ashley Pringle
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+]]
+}
 
 local sentence={}
 sentence.parts=LIP.load("library/sentenceparts.ini")
@@ -84,15 +109,29 @@ local chapter = function(f,g,length,number,depth)
 end
 nano.chapter=chapter
 
+local title = function(f,g)
+	local titles={}
+	titles[1] = function(g)
+		return "The Adventures of "..g.characters.protagonist
+	end
+	titles[2] = function(g)
+		return "The "..supper.random(sentence.parts.noun)
+	end
+	titles[3] = function(g)
+		return g.characters.protagonist.." versus "..g.characters.antagonist
+	end
+	f:write(supper.random(titles)(g)..'\n')
+	f:write("Written Entirely By: Ashley Pringle\n\n")
+end
+
 local book = function(f,g,length,depth)
 	local d=depth or 1
 	if d==1 then
-		f:write("Title: "..g.title.."\n")
+		title(f,g)
 	end
 	local chapterlength=math.random(g.chapter.lengthmin,g.chapter.lengthmax)
 	nano.chapter(f,g,chapterlength,d)
 	d=d+1
-	--if d<=length then
 	if g.wordcount<=length then
 		nano.book(f,g,length,d)
 	else
