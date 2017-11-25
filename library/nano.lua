@@ -29,6 +29,8 @@ local sentence={}
 sentence.parts=LIP.load("library/sentenceparts.ini")
 supper.names(sentence.parts)
 
+--TODO sentence.parts stays, but we also load sentence.parts.tense.past and sentence.parts.tense.present, which are loaded from their respective ini files
+--they are only used in sentence?
 sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun","question"}
 sentence.parts.question.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.articlevowel.rules={"adjectivevowel","nounvowel"}
@@ -46,7 +48,7 @@ sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.comma.rules={"commaconjunction"}
 
-sentence.build = function(f,g,s)
+sentence.build = function(f,g,s)--TODO tense in here, after g before s
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
@@ -57,7 +59,7 @@ sentence.build = function(f,g,s)
 	local lastpart=s[#s]
 	if lastpart~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
 		if lastpart~="comma" and lastpart~="beginning" then g.wordcount=g.wordcount+1 end
-		sentence.build(f,g,s)
+		sentence.build(f,g,s)--TODO tense in here too
 	else--otherwise, go through all the sentence parts and insert a random word of that part type into the string
 		local p=""
 		for i,v in ipairs(s) do
@@ -77,12 +79,12 @@ sentence.build = function(f,g,s)
 end
 nano.sentence=sentence
 
-local paragraph = function(f,g,length,depth)
+local paragraph = function(f,g,length,depth)--TODO input tense into this from chapter, so each chapter has its own tense
 	local d=depth or 1
 	if d==1 then
-		f:write(sentence.build(f,g))
+		f:write(sentence.build(f,g))--TODO sentence will also have to take a tense in, fater g but before s (every sentence must have a tense, which it gets from paragraph, which comes from chapter)
 	else
-		f:write(sentence.build(f,g,{"beginning"}))
+		f:write(sentence.build(f,g,{"beginning"}))--TODO tense here too
 	end
 	d=d+1
 	if d<=length then
