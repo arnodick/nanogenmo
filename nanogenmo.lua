@@ -24,7 +24,7 @@ LIP = require("library/LIP")
 --hpdf = require("hpdf")
 supper = require("library/supper")
 nano = require("library/nano")
---utils = require("library/utils")
+utils = require("library/utils")
 
 math.randomseed(os.time())
 
@@ -46,17 +46,22 @@ table.insert(nano.sentence.parts.propernoun,g.characters.protagonist)
 table.insert(nano.sentence.parts.propernoun,g.characters.antagonist)
 
 local filename=arg[3] or supper.random(nano.sentence.parts.noun)
-local f,error=io.open("books/"..filename..".txt","a")--open a text file and set it to be appended to
-g.title=filename
+local filepath="books/"..filename..".txt"
 
-if f then
-	--Book generator
-	local wordamount=50000
-	nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
+if not utils.fileexists(filepath) then
+	local f,error=io.open(filepath,"w")--open a text file and set it to be written to
+	if f then
+		--Book generator
+		local wordamount=50000
+		nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
 
-	f:close()--close the file when we are done writing to it
-	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/books/"..filename..".txt'>Link</a>")
-	return "successful yayyyy"
+		f:close()--close the file when we are done writing to it
+		io.write("<a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>Link</a>")
+		return "successful yayyyy"
+	else
+		return "not successful dannngggg \n"..error
+	end
 else
-	return "not successful dannngggg \n"..error
+	io.write("That book already exists! \n")
+	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>Link</a>")
 end
