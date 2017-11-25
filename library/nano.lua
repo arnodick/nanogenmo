@@ -111,15 +111,10 @@ nano.chapter=chapter
 
 local title = function(f,g)
 	local titles={}
-	titles[1] = function(g)
-		return "The Adventures of "..g.characters.protagonist
-	end
-	titles[2] = function(g)
-		return "The "..supper.random(sentence.parts.noun)
-	end
-	titles[3] = function(g)
-		return g.characters.protagonist.." versus "..g.characters.antagonist
-	end
+	table.insert(titles, function(g) return "The Adventures of "..g.characters.protagonist end)
+	table.insert(titles, function(g) return "The "..supper.random(sentence.parts.noun) end)
+	table.insert(titles, function(g) return g.characters.protagonist.." versus "..g.characters.antagonist end)
+
 	f:write(supper.random(titles)(g)..'\n')
 	f:write("Written Entirely By: Ashley Pringle\n\n")
 end
