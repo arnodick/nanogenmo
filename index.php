@@ -16,21 +16,22 @@
 			{
 				for ($i = 0; $i < count($output); $i++)
 				{
-					echo "<pre>$output[1]</pre>";
+					echo "<pre>$output[$i]</pre>";
 				}
 				if ($user)
 				{
-					mail("ash.pringle@gmail.com", "$user made a book!", "yeah you heard it right! $user made a book for themselves!");
+					mail("ash.pringle@gmail.com", "$user made a book!", "yeah you heard it right! $user made a book for themselves! nice!");
 				}
 			}
 			else
 			{
-				echo "Generator script failed to run! This isn't supposed to happen...";
+				echo "Book generator script failed to run! This isn't supposed to happen...\n";
+				echo var_dump($error);
 			}
 		}
 		else
 		{
-			echo "This book got NO character!";
+			echo "This book got NO dang character!\nPlease use <a href='https://www.ashleypringle.ca/nanogenmo/BookGenerator.html'>this link</a> to make a book!";
 		}
 	?></p>
 </BODY>
