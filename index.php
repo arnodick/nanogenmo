@@ -11,17 +11,12 @@
 			$user = $_SERVER["REMOTE_USER"];
 			$protagonist = escapeshellarg($protagonist);
 			$antagonist = escapeshellarg($antagonist);
-			//$output = shell_exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user);
 			//exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user." 2>&1", $output);
-			exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user." 2>&1", $output);
-			//echo "Done!";
-			echo "<br>";
+			exec("lua52 nanogenmo.lua $protagonist $antagonist $user 2>&1", $output);
 			for ($i = 0; $i < count($output); $i++)
 			{
 				echo "<pre>$output[$i]</pre>";
 			}
-			//echo $output[0];//TODO this is a hack why does this work only with this line?
-			//var_dump($output);
 			if ($user)
 			{
 				mail("ash.pringle@gmail.com", $user." used up their book generation tokens", "yeah you heard it right! ".$user." used up their book generation tokens");
