@@ -16,7 +16,7 @@
 			{
 				for ($i = 0; $i < count($output); $i++)
 				{
-					echo "<pre>$output[2]</pre>";
+					echo "<pre>$output[1]</pre>";
 				}
 				if ($user)
 				{
