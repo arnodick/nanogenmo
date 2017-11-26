@@ -28,6 +28,8 @@ THE SOFTWARE.
 local sentence={}
 sentence.parts=LIP.load("library/sentenceparts.ini")
 supper.names(sentence.parts)
+sentence.parts.verb.tenses=LIP.load("library/verbtenses.ini")
+sentence.parts.question.tenses=LIP.load("library/questiontenses.ini")
 
 --TODO sentence.parts stays, but we also load sentence.parts.tense.past and sentence.parts.tense.present, which are loaded from their respective ini files
 --they are only used in sentence?
@@ -49,7 +51,7 @@ sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.comma.rules={"commaconjunction"}
 
-sentence.build = function(f,g,s)--TODO tense in here, after g before s
+sentence.build = function(f,g,tense,s)--TODO tense in here, after g before s
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
@@ -60,7 +62,7 @@ sentence.build = function(f,g,s)--TODO tense in here, after g before s
 	local lastpart=s[#s]
 	if lastpart~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
 		if lastpart~="comma" and lastpart~="beginning" then g.wordcount=g.wordcount+1 end
-		sentence.build(f,g,s)--TODO tense in here too
+		sentence.build(f,g,tense,s)--TODO tense in here too
 	else--otherwise, go through all the sentence parts and insert a random word of that part type into the string
 		local p=""
 		for i,v in ipairs(s) do
@@ -68,7 +70,12 @@ sentence.build = function(f,g,s)--TODO tense in here, after g before s
 			if v=="conclusion" or v=="comma" then
 				space=""
 			end
-			local w=supper.random(sentence.parts[v])--this is the random word of type v ie: "verb" > "killed"
+			local w=""
+			if sentence.parts[v].tenses then
+				w=supper.random(sentence.parts[v].tenses[tense])
+			else
+				w=supper.random(sentence.parts[v])--this is the random word of type v ie: "verb" > "killed"
+			end
 			if i==1 then--makes first letter of a sentence uppercase
 				w=string.gsub(w,"^%l",string.upper)
 			end
@@ -80,34 +87,34 @@ sentence.build = function(f,g,s)--TODO tense in here, after g before s
 end
 nano.sentence=sentence
 
-local paragraph = function(f,g,length,depth)--TODO input tense into this from chapter, so each chapter has its own tense
+local paragraph = function(f,g,length,tense,depth)--TODO input tense into this from chapter, so each chapter has its own tense
 	local d=depth or 1
 	if d==1 then
-		f:write(sentence.build(f,g))--TODO sentence will also have to take a tense in, fater g but before s (every sentence must have a tense, which it gets from paragraph, which comes from chapter)
+		f:write(sentence.build(f,g,tense))--TODO sentence will also have to take a tense in, fater g but before s (every sentence must have a tense, which it gets from paragraph, which comes from chapter)
 	else
-		f:write(sentence.build(f,g,{"beginning"}))--TODO tense here too
+		f:write(sentence.build(f,g,tense,{"beginning"}))--TODO tense here too
 	end
 	d=d+1
 	if d<=length then
-		nano.paragraph(f,g,length,d)
+		nano.paragraph(f,g,length,tense,d)
 	else
 		f:write("\n\n")
 	end
 end
 nano.paragraph=paragraph
 
-local chapter = function(f,g,length,number,depth)
+local chapter = function(f,g,length,number,tense,depth)
 	local d=depth or 1
 	if d==1 then
 		f:write("CHAPTER "..number..": ")
-		sentence.build(f,g)
+		sentence.build(f,g,tense)
 		f:write("\n")
 	end
 	local paragraphlength=math.random(g.paragraph.lengthmin,g.paragraph.lengthmax)
-	nano.paragraph(f,g,paragraphlength)
+	nano.paragraph(f,g,paragraphlength,tense)
 	d=d+1
 	if d<=length then
-		nano.chapter(f,g,length,number,d)
+		nano.chapter(f,g,length,number,tense,d)
 	end
 end
 nano.chapter=chapter
@@ -130,7 +137,9 @@ local book = function(f,g,length,depth)
 		title(f,g)
 	end
 	local chapterlength=math.random(g.chapter.lengthmin,g.chapter.lengthmax)
-	nano.chapter(f,g,chapterlength,d)
+	local tenses={"past","present"}
+	local tense=supper.random(tenses)
+	nano.chapter(f,g,chapterlength,d,tense)
 	d=d+1
 	if g.wordcount<=length then
 		nano.book(f,g,length,d)
