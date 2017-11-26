@@ -56,7 +56,7 @@ if not utils.fileexists(filepath) then
 		nano.book(f,g,wordamount)--f = file to be written to, g = the Generator, as defined above
 
 		f:close()--close the file when we are done writing to it
-		io.write("SO successful! :D")
+		io.write("SO successful! :D\n")
 		io.write("Here is a <a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>link to your book!</a>")
 		--return "successful yayyyy! here is <a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>your link!</a>"
 	else
@@ -64,6 +64,6 @@ if not utils.fileexists(filepath) then
 		--return "not successful dannngggg \n"..error
 	end
 else
-	io.write("That book already exists! \n")
+	io.write("That book already exists!\n")
 	io.write("<a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>Link</a>")
 end
