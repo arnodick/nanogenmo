@@ -31,6 +31,7 @@ supper.names(sentence.parts)
 
 --TODO sentence.parts stays, but we also load sentence.parts.tense.past and sentence.parts.tense.present, which are loaded from their respective ini files
 --they are only used in sentence?
+--OR maybe have sentence.beginning.tense.past? is this possible?
 sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun","question"}
 sentence.parts.question.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.articlevowel.rules={"adjectivevowel","nounvowel"}
