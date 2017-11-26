@@ -11,15 +11,21 @@
 			$user = $_SERVER["REMOTE_USER"];
 			$protagonist = escapeshellarg($protagonist);
 			$antagonist = escapeshellarg($antagonist);
-			//exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user." 2>&1", $output);
-			exec("lua52 nanogenmo.lua $protagonist $antagonist $user 2>&1", $output);
-			for ($i = 0; $i < count($output); $i++)
+			exec("lua52 nanogenmo.lua $protagonist $antagonist $user 2>&1", $output, $error);
+			if ($error == nil)
 			{
-				echo "<pre>$output[$i]</pre>";
+				for ($i = 0; $i < count($output); $i++)
+				{
+					echo "<pre>$output[2]</pre>";
+				}
+				if ($user)
+				{
+					mail("ash.pringle@gmail.com", "$user made a book!", "yeah you heard it right! $user made a book for themselves!");
+				}
 			}
-			if ($user)
+			else
 			{
-				mail("ash.pringle@gmail.com", $user." used up their book generation tokens", "yeah you heard it right! ".$user." used up their book generation tokens");
+				echo "Generator script failed to run! This isn't supposed to happen...";
 			}
 		}
 		else
