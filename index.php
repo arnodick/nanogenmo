@@ -15,7 +15,8 @@
 			//exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user." 2>&1", $output);
 			exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user, $output);
 			echo "Done!";
-			echo "<pre>$output[0]</pre>";//TODO this is a hack why does this work only with this line?
+			//echo "<pre>$output[0]</pre>";//TODO this is a hack why does this work only with this line?
+			echo $output[0];//TODO this is a hack why does this work only with this line?
 			//var_dump($output);
 			if ($user)
 			{
