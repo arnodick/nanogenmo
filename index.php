@@ -16,7 +16,7 @@
 			exec("lua52 nanogenmo.lua ".$protagonist." ".$antagonist." ".$user." 2>&1", $output);
 			//echo "Done!";
 			echo "<br>"
-			for ($i = 0; $i < $output.count; $i++)
+			for ($i = 0; $i < count($output); $i++)
 			{
 				echo "<pre>$output[$i]</pre>";
 			}
