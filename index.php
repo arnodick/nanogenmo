@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <HTML>
+<HEAD>
+	<title>Ashley's Nanogenmo Book Generator!</title>
+	<META> name="author" content="Ashley Pringle"</META>
+	<META> name="description" content="A book generator designed by Ashley Pringle"</META>
+	<link rel="stylesheet" type="text/css" href="css.css">
+</HEAD>
+
 <BODY>
 	<p>GENERATING</p>
 	<p>...</p>
