@@ -30,6 +30,7 @@ sentence.parts=LIP.load("library/sentenceparts.ini")
 supper.names(sentence.parts)
 sentence.parts.verb.tenses=LIP.load("library/verbtenses.ini")
 sentence.parts.question.tenses=LIP.load("library/questiontenses.ini")
+sentence.parts.conclusion.tenses=LIP.load("library/conclusiontenses.ini")
 
 sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun","question"}
 sentence.parts.question.rules={"articlevowel","articleconsonant","propernoun"}
@@ -65,7 +66,6 @@ sentence.build = function(f,g,tense,s)
 		end
 	end
 	local lastpart=s[#s]
-	--TODO make conclusion tenses, so questions always have ? at end
 	if lastpart~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
 		if lastpart~="comma" and lastpart~="beginning" then g.wordcount=g.wordcount+1 end
 		sentence.build(f,g,tense,s)
@@ -78,7 +78,6 @@ sentence.build = function(f,g,tense,s)
 			end
 			local w=""
 			if sentence.parts[v].tenses then
-				print("PART: "..v.." TENSE: "..tense)
 				w=supper.random(sentence.parts[v].tenses[tense])
 			else
 				w=supper.random(sentence.parts[v])--this is the random word of type v ie: "verb" > "killed"
@@ -116,6 +115,7 @@ local chapter = function(f,g,length,number,tense,depth)
 		f:write("CHAPTER "..number..": ")
 		sentence.build(f,g,tense)
 		f:write("\n")
+		print(".")
 	end
 	local paragraphlength=math.random(g.paragraph.lengthmin,g.paragraph.lengthmax)
 	nano.paragraph(f,g,paragraphlength,tense)
