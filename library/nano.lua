@@ -31,9 +31,6 @@ supper.names(sentence.parts)
 sentence.parts.verb.tenses=LIP.load("library/verbtenses.ini")
 sentence.parts.question.tenses=LIP.load("library/questiontenses.ini")
 
---TODO sentence.parts stays, but we also load sentence.parts.tense.past and sentence.parts.tense.present, which are loaded from their respective ini files
---they are only used in sentence?
---OR maybe have sentence.beginning.tense.past? is this possible?
 sentence.parts.beginning.rules={"articlevowel","articleconsonant","propernoun","question"}
 sentence.parts.question.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.articlevowel.rules={"adjectivevowel","nounvowel"}
@@ -51,18 +48,27 @@ sentence.parts.verbconjunction.rules={"articlevowel","articleconsonant","verb","
 sentence.parts.commaconjunction.rules={"articlevowel","articleconsonant","propernoun"}
 sentence.parts.comma.rules={"commaconjunction"}
 
-sentence.build = function(f,g,tense,s)--TODO tense in here, after g before s
+sentence.build = function(f,g,tense,s)
 	s=s or {}--first time in, make a new sentence, otherwise inherit unfinshed sentence from last iteration of sentence.build
 
 	if #s==0 then--if this is the first iteration, make a sentence beginning
-		table.insert(s,supper.random(sentence.parts.beginning.rules))--behaves like a beginning part ie: inserts one of the parts that follows a beginning
+		local part=supper.random(sentence.parts.beginning.rules)
+		table.insert(s,part)--behaves like a beginning part ie: inserts one of the parts that follows a beginning
+		if part=="question" then
+			tense=tense.."question"
+		end
 	else--otherwise make a sentence part based on the rules of the last part of the sentence ie: if last part is "comma", only option is "commaconjunction"
-		table.insert(s,supper.random(sentence.parts[s[#s]].rules))
+		local part=supper.random(sentence.parts[s[#s]].rules)
+		table.insert(s,part)
+		if part=="question" then
+			tense=tense.."question"
+		end
 	end
 	local lastpart=s[#s]
+	--TODO make conclusion tenses, so questions always have ? at end
 	if lastpart~="conclusion" then--if we haven't reached the end of the sentence, keep making new sentence parts
 		if lastpart~="comma" and lastpart~="beginning" then g.wordcount=g.wordcount+1 end
-		sentence.build(f,g,tense,s)--TODO tense in here too
+		sentence.build(f,g,tense,s)
 	else--otherwise, go through all the sentence parts and insert a random word of that part type into the string
 		local p=""
 		for i,v in ipairs(s) do
@@ -72,6 +78,7 @@ sentence.build = function(f,g,tense,s)--TODO tense in here, after g before s
 			end
 			local w=""
 			if sentence.parts[v].tenses then
+				print("PART: "..v.." TENSE: "..tense)
 				w=supper.random(sentence.parts[v].tenses[tense])
 			else
 				w=supper.random(sentence.parts[v])--this is the random word of type v ie: "verb" > "killed"
@@ -87,12 +94,12 @@ sentence.build = function(f,g,tense,s)--TODO tense in here, after g before s
 end
 nano.sentence=sentence
 
-local paragraph = function(f,g,length,tense,depth)--TODO input tense into this from chapter, so each chapter has its own tense
+local paragraph = function(f,g,length,tense,depth)
 	local d=depth or 1
 	if d==1 then
-		f:write(sentence.build(f,g,tense))--TODO sentence will also have to take a tense in, fater g but before s (every sentence must have a tense, which it gets from paragraph, which comes from chapter)
+		f:write(sentence.build(f,g,tense))--TODO insert beginning here (this is always just a space? then don't have to manually make space?)
 	else
-		f:write(sentence.build(f,g,tense,{"beginning"}))--TODO tense here too
+		f:write(sentence.build(f,g,tense,{"beginning"}))--TODO change this to "connective" or something, and insert it here
 	end
 	d=d+1
 	if d<=length then
