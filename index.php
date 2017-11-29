@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <HTML>
 <HEAD>
-	<title>Ashley's Nanogenmo Book Generator!</title>
+	<title>ONE OF A KIND</title>
 	<META name="author" content="Ashley Pringle">
 	<META name="description" content="A book generator designed by Ashley Pringle">
+	<link rel="stylesheet" type="text/css" href="css.css">
 </HEAD>
 
 <BODY>
-	<p>GENERATING</p>
+	<p>G E N E R A T I N G</p>
 	<p>...</p>
 	<p><?php
 		$protagonist = $_POST["protagonist"];
