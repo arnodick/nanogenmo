@@ -115,7 +115,6 @@ local chapter = function(f,g,length,number,tense,depth)
 		f:write("CHAPTER "..number..": ")
 		sentence.build(f,g,tense)
 		f:write("\n")
-		print(".")
 	end
 	local paragraphlength=math.random(g.paragraph.lengthmin,g.paragraph.lengthmax)
 	nano.paragraph(f,g,paragraphlength,tense)
