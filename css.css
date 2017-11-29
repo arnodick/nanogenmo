@@ -44,7 +44,7 @@ input:focus, textarea:focus
 
 input:invalid
 {
-  border: 2px dashed gray;
+  border: 2px solid gray;
 }
 
 input:valid
