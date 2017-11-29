@@ -44,12 +44,12 @@ input:focus, textarea:focus
 
 input:invalid
 {
-  border: 2px dashed red;
+  border: 2px dashed gray;
 }
 
 input:valid
 {
-  border: 2px solid black;
+  border: 2px solid green;
 }
 
 textarea
