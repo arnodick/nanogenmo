@@ -23,7 +23,8 @@
 			{
 				for ($i = 0; $i < count($output); $i++)
 				{
-					echo "<pre>$output[$i]</pre>";
+					//echo "<pre>$output[$i]</pre>";
+					echo "$output[$i]";
 				}
 				if ($user)
 				{
