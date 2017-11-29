@@ -19,7 +19,7 @@ label
   /* To make sure that all labels have the same size and are properly aligned */
   display: inline-block;
   width: 400px;
-  text-align: center;
+  text-align: left;
 }
 
 input, textarea
@@ -29,7 +29,7 @@ input, textarea
   font: 1em sans-serif;
 
   /* To give the same size to all text fields */
-  width: 300px;
+  width: 380px;
   box-sizing: border-box;
 
   /* To harmonize the look & feel of text field border */
@@ -71,5 +71,6 @@ button
 {
   /* This extra margin represent roughly the same space as the space
      between the labels and their text fields */
-  margin-left: .5em;
+  /*margin-left: .5em;*/
+  margin: auto;
 }
