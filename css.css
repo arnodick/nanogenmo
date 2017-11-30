@@ -1,3 +1,5 @@
+p {font-family: 'Barlow Condensed', sans-serif; font-size: 16pt;}
+
 form
 {
   /* Just to center the form on the page */
@@ -12,7 +14,6 @@ form
 form div + div
 {
   margin-top: 1em;
-  font-family: 'Barlow Condensed', sans-serif;
 }
 
 label
@@ -21,7 +22,6 @@ label
   display: inline-block;
   width: 400px;
   text-align: left;
-  font-family: 'Barlow Condensed', sans-serif;
 }
 
 input, textarea
@@ -29,7 +29,6 @@ input, textarea
   /* To make sure that all text fields have the same font settings
      By default, textareas have a monospace font */
   font: 1em sans-serif;
-  font-family: 'Barlow Condensed', sans-serif;
 
   /* To give the same size to all text fields */
   width: 380px;
