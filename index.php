@@ -13,6 +13,11 @@
 	<p>...</p>
 	<p><?php
 		require('library/fpdf.php');
+		$pdf = new FPDF();
+		$pdf->AddPage();
+		$pdf->SetFont('Arial', 'B', 16);
+		$pdf->Cell(40, 10, 'What up Bees');
+		$pdf->Output();
 		$protagonist = $_POST["protagonist"];
 		$antagonist = $_POST["antagonist"];
 		if ($protagonist and $antagonist)
@@ -25,7 +30,6 @@
 			{
 				for ($i = 0; $i < count($output); $i++)
 				{
-					//echo "<pre>$output[$i]</pre>";
 					echo "$output[$i]";
 				}
 				if ($user)
