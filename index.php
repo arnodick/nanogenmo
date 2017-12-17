@@ -41,7 +41,7 @@
 		}
 		else
 		{
-			echo "This book got NO dang character!\nPlease use <a href='https://www.ashleypringle.ca/nanogenmo/BookGenerator.html'>this link</a> to make a book!";
+			echo "This book got NO dang character!\nPlease use <a href='https://www.ashleypringle.ca/nanogenmo/ONE_OF_A_KIND.html'>this link</a> to make a book!";
 		}
 	?></p>
 </BODY>
