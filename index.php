@@ -12,7 +12,7 @@
 	<p>G E N E R A T I N G</p>
 	<p>...</p>
 	<p><?php
-		require('library/fpdf.php';
+		require('library/fpdf.php');
 		$protagonist = $_POST["protagonist"];
 		$antagonist = $_POST["antagonist"];
 		if ($protagonist and $antagonist)
