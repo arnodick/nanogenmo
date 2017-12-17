@@ -16,7 +16,7 @@
 		{
 			$this->SetY(-15);// POSITION AT 15mm FROM BOTTOM
 			$this->SetFont('Arial', 'I', 8);
-			$this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0 'C');// PAGE NUMBER
+			$this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0, 'C');// PAGE NUMBER
 		}
 	}
 
