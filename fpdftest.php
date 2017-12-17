@@ -22,7 +22,7 @@
 
 
 	//$pdf = new FPDF('L', 'mm', 'Legal');
-	$pdf = new PDF():
+	$pdf = new PDF();
 	$pdf->AliasNbPages();
 	$pdf->AddPage();
 	//$pdf->SetFont('Arial', 'B', 16);
