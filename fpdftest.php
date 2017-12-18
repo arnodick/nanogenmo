@@ -34,7 +34,8 @@
 	{
 		while (($line = fgets($textfile)) != false)
 		{
-			$pdf->Cell(0, 10, $line, 0, 1);
+			//$pdf->Cell(0, 10, $line, 0, 1);
+			$pdf->MultiCell(0, 10, $line);
 		}
 		fclose($textfile);
 	}
