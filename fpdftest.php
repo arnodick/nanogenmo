@@ -29,7 +29,20 @@
 	$pdf->SetFont('Times', '', 12);
 	$pdf->Cell(40, 10, 'What up Dawn', 1);
 	$pdf->Cell(60, 10, 'The Story Of Dawn', 0, 1, 'C');
+	$textfile = fopen("books/hugovk.txt", 'r');
+	if ($textfile)
+	{
+		while (($line = fgets($textfile)) != false)
+		{
+			$pdf->Cell(0, 10, $line, 0, 1);
+		}
+		fclose($textfile);
+	}
+	else
+		print("ERROR OPENING FILE");
+	/*
 	for($i=1; $i<=40; $i++)
 		$pdf->Cell(0, 10, 'Printing line number: '.$i, 0, 1);
+	*/
 	$pdf->Output();
 ?>
