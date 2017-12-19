@@ -26,6 +26,9 @@
 	$pdf->AliasNbPages();
 	$pdf->SetTitle("The Book");
 	$pdf->SetAuthor("Ashley Pringle");
+	$pdf->SetDisplayMode("fullpage", "two");
+	$pdf->SetKeywords("choose your own adventure");
+	$pdf->SetSubject("Adventure");
 	$pdf->AddPage();
 	$link = $pdf->AddLink();//make a link
 	$pdf->SetLink($link);//the link goes to the first page
@@ -44,5 +47,5 @@
 		print("ERROR OPENING FILE");
 	$pdf->SetTextColor(40, 40, 185);
 	$pdf->Write(8, 'LINK', $link);//at the end of the pdf, write some text with the link that goes back to the first of the pdf
-	$pdf->Output();
+	$pdf->Output("I", "story.pdf");
 ?>
