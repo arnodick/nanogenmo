@@ -27,6 +27,8 @@
 	$pdf->SetTitle("The Book");
 	$pdf->SetAuthor("Ashley Pringle");
 	$pdf->AddPage();
+	$link = $pdf->AddLink();//make a link
+	$pdf->SetLink($link);//the link goes to the first page
 	$pdf->SetFont('Times', '', 12);
 	$textfile = fopen("books/hugovk.txt", 'r');
 	if ($textfile)
@@ -40,5 +42,6 @@
 	}
 	else
 		print("ERROR OPENING FILE");
+	$pdf->Write(8, 'LINK', $link);//at the end of the pdf, write some text with the link that goes back to the first of the pdf
 	$pdf->Output();
 ?>
