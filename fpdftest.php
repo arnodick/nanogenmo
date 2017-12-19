@@ -42,6 +42,7 @@
 	}
 	else
 		print("ERROR OPENING FILE");
+	$pdf->SetTextColor(40, 40, 185);
 	$pdf->Write(8, 'LINK', $link);//at the end of the pdf, write some text with the link that goes back to the first of the pdf
 	$pdf->Output();
 ?>
