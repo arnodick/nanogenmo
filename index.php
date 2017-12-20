@@ -27,6 +27,7 @@
 					echo "$output[$i]<br>";
 				}
 				$book = json_decode($output[1], true);
+				echo json_last_error();
 				echo  gettype($book);
 				var_dump($book);
 				if ($user)
