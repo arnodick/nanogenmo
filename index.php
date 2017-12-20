@@ -24,11 +24,11 @@
 			{
 				for ($i = 0; $i < count($output); $i++)
 				{
-					echo "$output[$i]<br>";
+					echo "$output[$i] $i";
 				}
 				$book = json_decode($output[1], true);
 				echo json_last_error();
-				echo  gettype($book);
+				echo gettype($book);
 				var_dump($book);
 				if ($user)
 				{
