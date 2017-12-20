@@ -22,6 +22,7 @@ THE SOFTWARE.
 
 LIP = require("library/LIP")
 --hpdf = require("hpdf")
+json = require("library/json")
 supper = require("library/supper")
 nano = require("library/nano")
 utils = require("library/utils")
@@ -57,6 +58,7 @@ if not utils.fileexists(filepath) then
 
 		f:close()--close the file when we are done writing to it
 		io.write(":D Successful!<br>Here is a <a href='https://www.ashleypringle.ca/nanogenmo/"..filepath.."'>link to your book!</a>")
+		io.write(json.encode(g))
 	else
 		io.write(":( Not successful...<br>"..error)
 	end
