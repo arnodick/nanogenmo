@@ -26,8 +26,6 @@
 				{
 					echo "$output[$i]";
 				}
-				$book = json_decode($output[0], true);
-				var_dump($book);
 				if ($user)
 				{
 					mail("ash.pringle@gmail.com", "$user made a book!", "yeah you heard it right! $user made a book for themselves! nice!");
