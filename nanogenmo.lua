@@ -21,8 +21,6 @@ THE SOFTWARE.
 --]]
 
 LIP = require("library/LIP")
---hpdf = require("hpdf")
-json = require("library/json")
 supper = require("library/supper")
 nano = require("library/nano")
 utils = require("library/utils")
